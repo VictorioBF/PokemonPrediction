@@ -2,12 +2,62 @@ import java.util.List;
 
 public class DataFactory {
 
+    // MOVES
+
     public static Move Flamethrower =
             new Move(
                     "Flamethrower",
                     Type.FIRE,
                     Category.SPECIAL,
                     90
+            );
+
+    public static Move HydroPump =
+            new Move(
+                    "Hydro Pump",
+                    Type.WATER,
+                    Category.SPECIAL,
+                    110
+            );
+
+    public static Move Thunderbolt =
+            new Move(
+                    "Thunderbolt",
+                    Type.ELECTRIC,
+                    Category.SPECIAL,
+                    90
+            );
+
+    public static Move LeafStorm =
+            new Move(
+                    "Leaf Storm",
+                    Type.GRASS,
+                    Category.SPECIAL,
+                    130
+            );
+
+    public static Move Earthquake =
+            new Move(
+                    "Earthquake",
+                    Type.GROUND,
+                    Category.PHYSICAL,
+                    100
+            );
+
+    public static Move IceBeam =
+            new Move(
+                    "Ice Beam",
+                    Type.ICE,
+                    Category.SPECIAL,
+                    90
+            );
+
+    public static Move ShadowBall =
+            new Move(
+                    "Shadow Ball",
+                    Type.GHOST,
+                    Category.SPECIAL,
+                    80
             );
 
     public static Move Recover =
@@ -18,13 +68,7 @@ public class DataFactory {
                     0
             );
 
-    public static Move HydroPump =
-            new Move(
-                    "Hydro Pump",
-                    Type.WATER,
-                    Category.SPECIAL,
-                    110
-            );
+    // POKEMON
 
     public static Pokemon charizard() {
 
@@ -61,4 +105,154 @@ public class DataFactory {
                 )
         );
     }
+
+    public static Pokemon venusaur() {
+
+        return new Pokemon(
+                "Venusaur",
+                List.of(Type.GRASS),
+                80,
+                82,
+                83,
+                100,
+                100,
+                80,
+                List.of(
+                        LeafStorm,
+                        Recover
+                )
+        );
+    }
+
+    public static Pokemon pikachu() {
+
+        return new Pokemon(
+                "Pikachu",
+                List.of(Type.ELECTRIC),
+                35,
+                55,
+                40,
+                50,
+                50,
+                90,
+                List.of(
+                        Thunderbolt,
+                        Recover
+                )
+        );
+    }
+
+    public static Pokemon gengar() {
+
+        return new Pokemon(
+                "Gengar",
+                List.of(Type.GHOST),
+                60,
+                65,
+                60,
+                130,
+                75,
+                110,
+                List.of(
+                        ShadowBall,
+                        Recover
+                )
+        );
+    }
+
+    public static Pokemon garchomp() {
+
+        return new Pokemon(
+                "Garchomp",
+                List.of(Type.DRAGON, Type.GROUND),
+                108,
+                130,
+                95,
+                80,
+                85,
+                102,
+                List.of(
+                        Earthquake,
+                        Recover
+                )
+        );
+    }
+
+    public static Pokemon lapras() {
+
+        return new Pokemon(
+                "Lapras",
+                List.of(Type.WATER, Type.ICE),
+                130,
+                85,
+                80,
+                85,
+                95,
+                60,
+                List.of(
+                        HydroPump,
+                        IceBeam
+                )
+        );
+    }
+    public static Pokemon arcanine() {
+    return new Pokemon(
+            "Arcanine",
+            List.of(Type.FIRE),
+            90,110,80,100,80,95,
+            List.of(
+                    Flamethrower,
+                    Recover
+            )
+    );
+}
+
+public static Pokemon sceptile() {
+    return new Pokemon(
+            "Sceptile",
+            List.of(Type.GRASS),
+            70,85,65,105,85,120,
+            List.of(
+                    LeafStorm,
+                    Recover
+            )
+    );
+}
+
+public static Pokemon alakazam() {
+    return new Pokemon(
+            "Alakazam",
+            List.of(Type.PSYCHIC),
+            55,50,45,135,95,120,
+            List.of(
+                    ShadowBall,
+                    Recover
+            )
+    );
+}
+
+public static Pokemon jolteon() {
+    return new Pokemon(
+            "Jolteon",
+            List.of(Type.ELECTRIC),
+            65,65,60,110,95,130,
+            List.of(
+                    Thunderbolt,
+                    Recover
+            )
+    );
+}
+
+public static Pokemon dragonite() {
+    return new Pokemon(
+            "Dragonite",
+            List.of(Type.DRAGON, Type.FLYING),
+            91,134,95,100,100,80,
+            List.of(
+                    Earthquake,
+                    Recover
+            )
+    );
+}
+
 }
