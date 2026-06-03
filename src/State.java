@@ -1,0 +1,91 @@
+public class State {
+
+    public Pokemon p1;
+    public Pokemon p2;
+
+    public int hp1;
+    public int hp2;
+
+    public State(Pokemon p1, Pokemon p2) {
+        this.p1 = p1;
+        this.p2 = p2;
+        this.hp1 = 100;
+        this.hp2 = 100;
+    }
+
+    public State(Pokemon p1, Pokemon p2, int hp1, int hp2) {
+        this.p1 = p1;
+        this.p2 = p2;
+        this.hp1 = hp1;
+        this.hp2 = hp2;
+    }
+
+    public String identity() {
+        return p1.name + "_" + hp1 + "_" +
+               p2.name + "_" + hp2;
+    }
+
+    public boolean finished() {
+        return hp1 <= 0 || hp2 <= 0;
+    }
+
+    public State step(int move1Index, int move2Index) {
+
+        State next =
+                new State(p1, p2, hp1, hp2);
+
+        Move move1 = p1.moves.get(move1Index);
+        Move move2 = p2.moves.get(move2Index);
+
+        boolean p1First =
+                p1.speed >= p2.speed;
+
+        if (p1First) {
+
+            apply(next, p1, p2, move1, true);
+
+            apply(next, p2, p1, move2, false);
+
+        } else {
+
+            apply(next, p2, p1, move2, false);
+
+            apply(next, p1, p2, move1, true);
+        }
+
+        return next;
+    }
+
+    private void apply(
+            State next,
+            Pokemon attacker,
+            Pokemon defender,
+            Move move,
+            boolean attackerIsP1
+    ) {
+
+        if (move.name.equals("Recover")) {
+
+            if (attackerIsP1) {
+                next.hp1 = Math.min(100, next.hp1 + 50);
+            } else {
+                next.hp2 = Math.min(100, next.hp2 + 50);
+            }
+
+            return;
+        }
+
+        int damage =
+                DamageCalculator.calculateDamage(
+                        attacker,
+                        defender,
+                        move
+                );
+
+        if (attackerIsP1) {
+            next.hp2 = Math.max(0, next.hp2 - damage);
+        } else {
+            next.hp1 = Math.max(0, next.hp1 - damage);
+        }
+    }
+}
