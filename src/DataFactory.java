@@ -73,6 +73,7 @@ public class DataFactory {
     public static Pokemon charizard() {
 
         return new Pokemon(
+                6,
                 "Charizard",
                 List.of(Type.FIRE, Type.FLYING),
                 78,
@@ -91,6 +92,7 @@ public class DataFactory {
     public static Pokemon blastoise() {
 
         return new Pokemon(
+                9,
                 "Blastoise",
                 List.of(Type.WATER),
                 79,
@@ -109,6 +111,7 @@ public class DataFactory {
     public static Pokemon venusaur() {
 
         return new Pokemon(
+                3,
                 "Venusaur",
                 List.of(Type.GRASS),
                 80,
@@ -127,6 +130,7 @@ public class DataFactory {
     public static Pokemon pikachu() {
 
         return new Pokemon(
+                25,
                 "Pikachu",
                 List.of(Type.ELECTRIC),
                 35,
@@ -145,6 +149,7 @@ public class DataFactory {
     public static Pokemon gengar() {
 
         return new Pokemon(
+                94,
                 "Gengar",
                 List.of(Type.GHOST),
                 60,
@@ -163,6 +168,7 @@ public class DataFactory {
     public static Pokemon garchomp() {
 
         return new Pokemon(
+                445,
                 "Garchomp",
                 List.of(Type.DRAGON, Type.GROUND),
                 108,
@@ -181,6 +187,7 @@ public class DataFactory {
     public static Pokemon lapras() {
 
         return new Pokemon(
+                131,
                 "Lapras",
                 List.of(Type.WATER, Type.ICE),
                 130,
@@ -197,6 +204,7 @@ public class DataFactory {
     }
     public static Pokemon arcanine() {
     return new Pokemon(
+            59,
             "Arcanine",
             List.of(Type.FIRE),
             90,110,80,100,80,95,
@@ -209,6 +217,7 @@ public class DataFactory {
 
 public static Pokemon sceptile() {
     return new Pokemon(
+            254,
             "Sceptile",
             List.of(Type.GRASS),
             70,85,65,105,85,120,
@@ -221,6 +230,7 @@ public static Pokemon sceptile() {
 
 public static Pokemon alakazam() {
     return new Pokemon(
+            65,
             "Alakazam",
             List.of(Type.PSYCHIC),
             55,50,45,135,95,120,
@@ -233,6 +243,7 @@ public static Pokemon alakazam() {
 
 public static Pokemon jolteon() {
     return new Pokemon(
+            135,
             "Jolteon",
             List.of(Type.ELECTRIC),
             65,65,60,110,95,130,
@@ -245,6 +256,7 @@ public static Pokemon jolteon() {
 
 public static Pokemon dragonite() {
     return new Pokemon(
+            149,
             "Dragonite",
             List.of(Type.DRAGON, Type.FLYING),
             91,134,95,100,100,80,

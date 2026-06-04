@@ -2,6 +2,7 @@ import java.util.List;
 
 public class Pokemon {
 
+    public int pokedexNumber;
     public String name;
 
     public List<Type> types;
@@ -16,6 +17,7 @@ public class Pokemon {
     public List<Move> moves;
 
     public Pokemon(
+            int pokedexNumber,
             String name,
             List<Type> types,
             int hp,
@@ -26,6 +28,7 @@ public class Pokemon {
             int speed,
             List<Move> moves
     ) {
+        this.pokedexNumber = pokedexNumber;
         this.name = name;
         this.types = types;
 
