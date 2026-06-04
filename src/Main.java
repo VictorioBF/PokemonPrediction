@@ -40,11 +40,11 @@ public class Main {
                 "Dragonite"
         };
 
-        Logger.log("");
+        Logger.logEmptyLine();
         Logger.log("========================================");
         Logger.log("POKEMON METAGAME ANALYSIS");
         Logger.log("========================================");
-        Logger.log("");
+        Logger.logEmptyLine();
 
         for (Pokemon p1 : teamA) {
 
@@ -53,58 +53,51 @@ public class Main {
                 runBattle(
                         p1,
                         p2,
-                        names
-                );
+                        names);
             }
         }
 
-        Logger.log("");
+        Logger.logEmptyLine();
         Logger.log("========================================");
         Logger.log("FINAL RESULT");
         Logger.log("========================================");
 
         Logger.log(
                 "Team A wins: "
-                        + teamAWins
-        );
+                        + teamAWins);
 
         Logger.log(
                 "Team B wins: "
-                        + teamBWins
-        );
+                        + teamBWins);
 
-        Logger.log("");
+        Logger.logEmptyLine();
 
         if (teamAWins > teamBWins) {
 
             Logger.log(
-                    "Best Team: Team A"
-            );
+                    "Best Team: Team A");
 
         } else if (teamBWins > teamAWins) {
 
             Logger.log(
-                    "Best Team: Team B"
-            );
+                    "Best Team: Team B");
 
         } else {
 
             Logger.log(
-                    "Result: Draw"
-            );
+                    "Result: Draw");
         }
 
-        Logger.log("");
+        Logger.logEmptyLine();
         Logger.log("POKEMON RANKING");
 
         for (int i = 0; i < names.length; i++) {
 
             Logger.log(
                     names[i]
-                    + " -> "
-                    + pokemonWins[i]
-                    + " victories"
-            );
+                            + " -> "
+                            + pokemonWins[i]
+                            + " victories");
         }
 
         Logger.close();
@@ -113,49 +106,39 @@ public class Main {
     private static void runBattle(
             Pokemon p1,
             Pokemon p2,
-            String[] names
-    ) {
+            String[] names) {
 
-        Logger.log("");
+        Logger.logEmptyLine();
         Logger.log(
-                "========================================"
-        );
+                "========================================");
 
         Logger.log(
                 p1.name
-                + " VS "
-                + p2.name
-        );
+                        + " VS "
+                        + p2.name);
 
         Logger.log(
-                "========================================"
-        );
+                "========================================");
 
-        State initial =
-                new State(
-                        p1,
-                        p2
-                );
+        State initial = new State(
+                p1,
+                p2);
 
-        BattleGraph graph =
-                new BattleGraph();
+        BattleGraph graph = new BattleGraph();
 
         graph.build(initial);
 
         int totalEdges = 0;
 
-        for (var edges :
-                graph.graph.values()) {
+        for (var edges : graph.graph.values()) {
 
-            totalEdges +=
-                    edges.size();
+            totalEdges += edges.size();
         }
 
         int p1Wins = 0;
         int p2Wins = 0;
 
-        for (State s :
-                graph.states.values()) {
+        for (State s : graph.states.values()) {
 
             if (s.hp2 <= 0) {
                 p1Wins++;
@@ -168,74 +151,59 @@ public class Main {
 
         Logger.log(
                 "States: "
-                + graph.states.size()
-        );
+                        + graph.states.size());
 
         Logger.log(
                 "Edges: "
-                + totalEdges
-        );
+                        + totalEdges);
 
         Logger.log(
                 "P1 winning states: "
-                + p1Wins
-        );
+                        + p1Wins);
 
         Logger.log(
                 "P2 winning states: "
-                + p2Wins
-        );
+                        + p2Wins);
 
         if (p1Wins > p2Wins) {
 
             Logger.log(
                     "Winner: "
-                    + p1.name
-            );
+                            + p1.name);
 
             teamAWins++;
 
             addWin(
                     names,
-                    p1.name
-            );
+                    p1.name);
 
         } else if (p2Wins > p1Wins) {
 
             Logger.log(
                     "Winner: "
-                    + p2.name
-            );
+                            + p2.name);
 
             teamBWins++;
 
             addWin(
                     names,
-                    p2.name
-            );
+                    p2.name);
 
         } else {
 
             Logger.log(
-                    "Result: Draw"
-            );
+                    "Result: Draw");
         }
     }
 
     private static void addWin(
             String[] names,
-            String pokemon
-    ) {
+            String pokemon) {
 
-        for (int i = 0;
-             i < names.length;
-             i++) {
+        for (int i = 0; i < names.length; i++) {
 
-            if (
-                    names[i].equals(
-                            pokemon
-                    )
-            ) {
+            if (names[i].equals(
+                    pokemon)) {
 
                 pokemonWins[i]++;
 
