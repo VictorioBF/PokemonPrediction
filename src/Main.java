@@ -41,9 +41,9 @@ public class Main {
         };
 
         Logger.logEmptyLine();
-        Logger.log("========================================");
+        Logger.logSeparator();
         Logger.log("POKEMON METAGAME ANALYSIS");
-        Logger.log("========================================");
+        Logger.logSeparator();
         Logger.logEmptyLine();
 
         for (Pokemon p1 : teamA) {
@@ -58,9 +58,9 @@ public class Main {
         }
 
         Logger.logEmptyLine();
-        Logger.log("========================================");
+        Logger.logSeparator();
         Logger.log("FINAL RESULT");
-        Logger.log("========================================");
+        Logger.logSeparator();
 
         Logger.log(
                 "Team A wins: "
@@ -109,16 +109,14 @@ public class Main {
             String[] names) {
 
         Logger.logEmptyLine();
-        Logger.log(
-                "========================================");
+        Logger.logSeparator();
 
         Logger.log(
                 p1.name
                         + " VS "
                         + p2.name);
 
-        Logger.log(
-                "========================================");
+        Logger.logSeparator();
 
         State initial = new State(
                 p1,

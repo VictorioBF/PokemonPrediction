@@ -35,6 +35,10 @@ public class Logger {
         log("");
     }
 
+    public static void logSeparator() {
+        log("========================================");
+    }
+
     public static void close() {
 
         if (writer != null) {
