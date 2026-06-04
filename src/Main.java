@@ -1,3 +1,7 @@
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+
 public class Main {
 
     static int teamAWins = 0;
@@ -82,6 +86,8 @@ public class Main {
 
         graph.build(initial);
 
+        generateDotFile(p1, p2, graph, p1.name + "_vs_" + p2.name + ".dot");
+
         int totalEdges = 0;
 
         for (var edges : graph.graph.values()) {
@@ -126,6 +132,21 @@ public class Main {
                 pokemonWins[i]++;
                 return;
             }
+        }
+    }
+
+    private static void generateDotFile(Pokemon first, Pokemon second, BattleGraph graph, String filename) {
+        var dotFile = new DotFile(first.name + "_vs_" + second.name);
+        dotFile.addPokemon(first, 0);
+        dotFile.addPokemon(second, 1);
+        var dotFileContent = dotFile.toString();
+        try {
+            var writer = new PrintWriter(new FileWriter(filename));
+            writer.write(dotFileContent);
+            writer.flush();
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
