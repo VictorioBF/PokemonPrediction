@@ -6,7 +6,6 @@ public class Main {
     static int[] pokemonWins = new int[12];
 
     public static void main(String[] args) {
-
         Pokemon[] teamA = {
                 DataFactory.charizard(),
                 DataFactory.venusaur(),
@@ -43,13 +42,8 @@ public class Main {
         Logger.logHeader("POKEMON METAGAME ANALYSIS");
 
         for (Pokemon p1 : teamA) {
-
             for (Pokemon p2 : teamB) {
-
-                runBattle(
-                        p1,
-                        p2,
-                        names);
+                runBattle(p1, p2, names);
             }
         }
 
@@ -68,8 +62,7 @@ public class Main {
             Logger.log("Result: Draw");
         }
 
-        Logger.logEmptyLine();
-        Logger.log("POKEMON RANKING");
+        Logger.logHeader("POKEMON RANKING");
 
         for (int i = 0; i < names.length; i++) {
             Logger.log(names[i] + " -> " + pokemonWins[i] + " victories");
@@ -82,16 +75,9 @@ public class Main {
             Pokemon p1,
             Pokemon p2,
             String[] names) {
-
-        Logger.logEmptyLine();
-        Logger.logSeparator();
-
-        Logger.log(p1.name + " VS " + p2.name);
-
-        Logger.logSeparator();
+        Logger.logHeader(p1.name + " VS " + p2.name);
 
         State initial = new State(p1, p2);
-
         BattleGraph graph = new BattleGraph();
 
         graph.build(initial);
@@ -115,25 +101,17 @@ public class Main {
         }
 
         Logger.log("States: " + graph.states.size());
-
         Logger.log("Edges: " + totalEdges);
-
         Logger.log("P1 winning states: " + p1Wins);
-
         Logger.log("P2 winning states: " + p2Wins);
 
         if (p1Wins > p2Wins) {
             Logger.log("Winner: " + p1.name);
-
             teamAWins++;
-
             addWin(names, p1.name);
-
         } else if (p2Wins > p1Wins) {
             Logger.log("Winner: " + p2.name);
-
             teamBWins++;
-
             addWin(names, p2.name);
         } else {
             Logger.log("Result: Draw");
@@ -143,7 +121,6 @@ public class Main {
     private static void addWin(
             String[] names,
             String pokemon) {
-
         for (int i = 0; i < names.length; i++) {
             if (names[i].equals(pokemon)) {
                 pokemonWins[i]++;
