@@ -139,6 +139,14 @@ public class Main {
         var dotFile = new DotFile(first.name + "_vs_" + second.name);
         dotFile.addPokemon(first, 0);
         dotFile.addPokemon(second, 1);
+        for (var state : graph.states.values()) {
+            dotFile.addState(state);
+        }
+        for (var battleEdge : graph.graph.values()) {
+            for (var edge : battleEdge) {
+                dotFile.addBattleEdge(edge);
+            }
+        }
         var dotFileContent = dotFile.toString();
         try {
             var writer = new PrintWriter(new FileWriter(filename));

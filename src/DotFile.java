@@ -54,7 +54,25 @@ public class DotFile {
     }
 
     public void addState(State state) {
+        var stateLabel = getStateLabel(state);
+        var stateNode = new DotFileNode(state.identity(), stateLabel);
+        stateNode.addAttribute("shape", "ellipse");
+        addLine(stateNode.toString());
+    }
 
+    private String getStateLabel(State state) {
+        StringBuilder labelContent = new StringBuilder();
+        labelContent.append("<<TABLE BORDER=\"1\" CELLBORDER=\"1\" CELLSPACING=\"0\">").append("\n");
+        labelContent.append("<TR><TD><B>").append(state.p1.name).append("</B></TD><TD><B>").append(state.p2.name).append("</B></TD></TR>").append("\n");
+        labelContent.append("<TR><TD>HP: ").append(state.hp1).append("%</TD><TD>HP: ").append(state.hp2).append("%</TD></TR>").append("\n");
+        labelContent.append("</TABLE>>");
+        return labelContent.toString();
+    }
+
+    public void addBattleEdge(BattleEdge edge) {
+        String edgeLabel = edge.move1.name + " / " + edge.move2.name;
+        var dotFileEdge = new DotFileEdge(edge.from.identity(), edge.to.identity(), edgeLabel);
+        addLine(dotFileEdge.toString());
     }
 
     @Override
@@ -97,5 +115,22 @@ class DotFileNode {
         }
         node.append("];").append("\n");
         return node.toString();
+    }
+}
+
+class DotFileEdge {
+    public String from;
+    public String to;
+    public String label;
+
+    public DotFileEdge(String from, String to, String label) {
+        this.from = from;
+        this.to = to;
+        this.label = label;
+    }
+
+    @Override
+    public String toString() {
+        return from + " -> " + to + " [label=\"" + label + "\"];";
     }
 }
