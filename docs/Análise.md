@@ -7,6 +7,9 @@ lang: pt
 pagesize: A4
 linestretch: 1.5
 fontsize: 12pt
+header-includes:
+    - \usepackage{titling}
+    - \setlength{\droptitle}{-2cm}
 ---
 
 ## Introdução
