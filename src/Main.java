@@ -40,11 +40,7 @@ public class Main {
                 "Dragonite"
         };
 
-        Logger.logEmptyLine();
-        Logger.logSeparator();
-        Logger.log("POKEMON METAGAME ANALYSIS");
-        Logger.logSeparator();
-        Logger.logEmptyLine();
+        Logger.logHeader("POKEMON METAGAME ANALYSIS");
 
         for (Pokemon p1 : teamA) {
 
@@ -57,10 +53,7 @@ public class Main {
             }
         }
 
-        Logger.logEmptyLine();
-        Logger.logSeparator();
-        Logger.log("FINAL RESULT");
-        Logger.logSeparator();
+        Logger.logHeader("FINAL RESULT");
 
         Logger.log(
                 "Team A wins: "

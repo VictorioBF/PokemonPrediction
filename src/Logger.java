@@ -39,6 +39,14 @@ public class Logger {
         log("========================================");
     }
 
+    public static void logHeader(String header) {
+        logEmptyLine();
+        logSeparator();
+        log(header);
+        logSeparator();
+        logEmptyLine();
+    }
+
     public static void close() {
 
         if (writer != null) {
