@@ -1,3 +1,7 @@
+battle_log.txt
+.direnv
+.envrc
+
 ### IntelliJ IDEA ###
 out/
 !**/src/main/**/out/
