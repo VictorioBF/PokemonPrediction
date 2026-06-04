@@ -5,12 +5,13 @@ date: \today
 geometry: margin=2cm
 lang: pt
 pagesize: A4
-linestretching: 1.5
+linestretch: 1.5
+fontsize: 12pt
 ---
 
 ## Introdução
 
-O documento a seguir apresenta uma análise do combate entre dois times Pokémon. Para realização do trabalho, foram simulados combates *1x1* entre os Pokémon de cada time. Os times escolhidos para a análise foram:
+O documento a seguir apresenta uma análise do combate entre dois times Pokémon. Para realização do trabalho, foram simulados combates *1 vs. 1* entre os Pokémon de cada time. Os times escolhidos para a análise foram:
 
 | Time A   | Time B    |
 |--------------- | --------------- |
@@ -63,13 +64,41 @@ Após a execução da simulação, vemos que o Time B tem uma leve vantagem sobr
 
 Dois Pokémon empataram como os melhores do combate: o Blastoise e o Venusaur. Ambos venceram 4 combates, o que é o maior número de vitórias entre os Pokémon analisados. Em segundo lugar, também empatados, seguem Charizard, Garchomp, Arcanine e Dragonite, com 3 vitórias cada.
 
+#### Vitórias dos Pokémon do Time A
+
+| Pokémon | Vitórias |
+|--------------- | --------------- |
+| Charizard | 3 |
+| Venusaur | 4 |
+| Gengar | 0 |
+| Garchomp | 3 |
+| Pikachu | 0 |
+| Lapras | 2 |
+
+#### Vitórias dos Pokémon do Time B
+
+| Pokémon | Vitórias |
+|--------------- | --------------- |
+| Blastoise | 4 |
+| Arcanine | 3 |
+| Sceptile | 2 |
+| Alakazam | 1 |
+| Jolteon | 2 |
+| Dragonite | 3 |
+
 ### 3 - Existe alguma batalha que um Pokémon sempre vença, independente das ações tomadas?
+
+Sim. O combate entre *Charizard* e *Blastoise* ocasiona em uma vitória do *Blastoise* em todos os estados possíveis. Isso se deve ao fato de o *Blastoise* ser um Pokémon do tipo água, o que lhe dá vantagem sobre o *Charizard*, que é do tipo fogo.
+
+![Charizard vs Blastoise](./Charizard_vs_Blastoise.png){width=60%}
 
 ### 4 - Existem estados em que a batalha se torna interminável?
 
-Sim, e isso surge, em grande parte, pela mecânica do *Recover*. Por exemplo, se ambos os Pokémon começarem com o movimento *Recover*, nenhum tomará dano, e o próximo turno estará no mesmo estado que o inicial. Assim sucessivamente.
+Nenhuma batalha é *interminável*, a não ser que seja estabelecido um limite de turnos. Por outro lado, existe a possibilidade de repetir indefinidamente o mesmo estado, o que pode ser considerado uma batalha interminável. Isso se dá por conta da mecânica do *Recover*, habilidade que recupera 50% de vida de um Pokémon.
 
-O ciclo só será quebrado no instante em que um dos Pokémon escolher um golpe ofensivo, de forma a causar dano ao oponente, até que ele perca.
+Como o *Recover* não possui limites ou condições, de modo a poder utilizá-lo a qualquer momento, é possível que ambos os Pokémon fiquem apenas usando o *Recover* e, assim, nunca acabem a batalha. Abaixo está um exemplo, onde o *Charizard* e o *Alakazam* ficam apenas usando o *Recover*.
+
+![Charizard vs Alakazam](./Charizard_vs_Alakazam.png){width=60%}
 
 ### 5 - Existem casos em que um Pokémon em desvantagem de tipo ainda consegue vencer?
 
@@ -78,5 +107,3 @@ Sim. Um exemplo é o da batalha entre o *Pikachu* e o *Blastoise*. O *Pikachu*, 
 Claro, há estados em que o *Pikachu* vence o *Blastoise*, mas a maioria dos estados leva à vitória do *Blastoise*.
 
 ![Pikachu vs Blastoise](./Pikachu_vs_Blastoise.png){width=60%}
-
-
