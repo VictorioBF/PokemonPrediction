@@ -12,12 +12,9 @@ public class Logger {
 
         try {
 
-            writer =
-                    new PrintWriter(
-                            new FileWriter(
-                                    "battle_log.txt"
-                            )
-                    );
+            writer = new PrintWriter(
+                    new FileWriter(
+                            "battle_log.txt"));
 
         } catch (IOException e) {
 
@@ -32,6 +29,22 @@ public class Logger {
         writer.println(text);
 
         writer.flush();
+    }
+
+    public static void logEmptyLine() {
+        log("");
+    }
+
+    public static void logSeparator() {
+        log("========================================");
+    }
+
+    public static void logHeader(String header) {
+        logEmptyLine();
+        logSeparator();
+        log(header);
+        logSeparator();
+        logEmptyLine();
     }
 
     public static void close() {
