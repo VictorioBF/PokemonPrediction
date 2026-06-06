@@ -21,11 +21,11 @@ public class GraphAnalyzer {
         System.out.println("P1 wins: " + p1Wins);
         System.out.println("P2 wins: " + p2Wins);
 
-        detectCycles(graph);
+//        detectCycles(graph);
     }
 
     // Detecta batalhas infinitas
-    public static void detectCycles(BattleGraph graph) {
+    public static boolean detectCycles(BattleGraph graph) {
 
         Set<String> visited =
                 new HashSet<>();
@@ -36,14 +36,10 @@ public class GraphAnalyzer {
         for (String node : graph.graph.keySet()) {
 
             if (dfs(node, graph, visited, stack)) {
-
-                System.out.println(
-                        "Infinite battle detected!"
-                );
-
-                return;
+                return true;
             }
         }
+        return false;
     }
 
     private static boolean dfs(
