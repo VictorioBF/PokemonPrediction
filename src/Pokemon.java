@@ -41,4 +41,19 @@ public class Pokemon {
 
         this.moves = moves;
     }
+
+    public boolean isWeakAgainst(Pokemon other) {
+        double thisEffectiveness = 0;
+        double otherEffectiveness = 0;
+
+        for (Type t1 : this.types) {
+            for (Type t2 : other.types) {
+                thisEffectiveness += DamageCalculator.effectiveness(t1, t2);
+                otherEffectiveness += DamageCalculator.effectiveness(t2, t1);
+            }
+        }
+
+        return otherEffectiveness > thisEffectiveness;
+
+    }
 }
