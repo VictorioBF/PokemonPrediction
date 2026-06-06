@@ -1,13 +1,21 @@
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Main {
 
     static int teamAWins = 0;
     static int teamBWins = 0;
 
-    static int[] pokemonWins = new int[12];
+    static Map<Pokemon, Integer> pokemonWins = new HashMap<>();
+//    static Map<Pokemon, Integer> pokemonRoundsWon = new HashMap<>();
+
+    static ArrayList<String> disadvantagedBattles = new ArrayList<>();
+    static ArrayList<String> endlessBattles = new ArrayList<>();
+    static ArrayList<String> unfairBattles = new ArrayList<>();
 
     public static void main(String[] args) {
         Pokemon[] teamA = {
@@ -28,26 +36,11 @@ public class Main {
                 DataFactory.dragonite()
         };
 
-        String[] names = {
-                "Charizard",
-                "Venusaur",
-                "Gengar",
-                "Garchomp",
-                "Pikachu",
-                "Lapras",
-                "Blastoise",
-                "Arcanine",
-                "Sceptile",
-                "Alakazam",
-                "Jolteon",
-                "Dragonite"
-        };
-
         Logger.logHeader("POKEMON METAGAME ANALYSIS");
 
         for (Pokemon p1 : teamA) {
             for (Pokemon p2 : teamB) {
-                runBattle(p1, p2, names);
+                runBattle(p1, p2);
             }
         }
 
@@ -66,19 +59,60 @@ public class Main {
             Logger.log("Result: Draw");
         }
 
+
+
         Logger.logHeader("POKEMON RANKING");
 
-        for (int i = 0; i < names.length; i++) {
-            Logger.log(names[i] + " -> " + pokemonWins[i] + " victories");
+        Logger.log("By no. of won battles:");
+        pokemonWins.entrySet()
+                .stream()
+                .sorted(Map.Entry.<Pokemon, Integer>comparingByValue().reversed())
+                .forEach(pokewin ->
+                    Logger.log(pokewin.getKey().name + " -> " + pokewin.getValue() + " victories")
+                );
+
+        // Imprime a quantidade de estados que cada pokémon venceu
+//        Logger.logEmptyLine();
+//        Logger.log("By no. of won rounds/states:");
+//        pokemonRoundsWon.entrySet()
+//                .stream()
+//                .sorted(Map.Entry.<Pokemon, Integer>comparingByValue().reversed())
+//                .forEach(pokewin ->
+//                        Logger.log(pokewin.getKey().name + " -> " + pokewin.getValue() + " rounds/states won")
+//                );
+
+        // Batalhas vencidas contra oponentes com vantagem de tipo
+        if (!disadvantagedBattles.isEmpty()) {
+            Logger.logEmptyLine();
+            Logger.log("Battle won in disadvantage:");
+            for (String db: disadvantagedBattles)
+                Logger.log(db);
+        } else {
+            Logger.log("No battles were won while in type disadvantage");
         }
+
+        // Batalhas injustas (um pokémon não ganha em nenhum estado)
+        if (!unfairBattles.isEmpty()) {
+            Logger.logEmptyLine();
+            Logger.log("Unfair battles (a pokémon didn't win a single state):");
+            for (String ub: unfairBattles)
+                Logger.log(ub);
+        } else {
+            Logger.log("No battles were won while in type disadvantage");
+        }
+
+        // Batalhas com ciclo (intermináveis)
+        Logger.logEmptyLine();
+        Logger.log("Total endless battles: " + endlessBattles.size());
+        for (String eb: endlessBattles)
+            Logger.log(eb);
 
         Logger.close();
     }
 
     private static void runBattle(
             Pokemon p1,
-            Pokemon p2,
-            String[] names) {
+            Pokemon p2) {
         Logger.logHeader(p1.name + " VS " + p2.name);
 
         State initial = new State(p1, p2);
@@ -106,32 +140,48 @@ public class Main {
             }
         }
 
+//        pokemonRoundsWon.put(p1, pokemonRoundsWon.getOrDefault(p1, 0) + p1Wins);
+//        pokemonRoundsWon.put(p2, pokemonRoundsWon.getOrDefault(p2, 0) + p2Wins);
+
+        Logger.logSeparator();
+
+        Logger.log(p1.name + " VS " + p2.name + " Battle result");
+        Logger.logEmptyLine();
+
         Logger.log("States: " + graph.states.size());
         Logger.log("Edges: " + totalEdges);
-        Logger.log("P1 winning states: " + p1Wins);
-        Logger.log("P2 winning states: " + p2Wins);
+        Logger.log(p1.name + " winning states: " + p1Wins);
+        Logger.log(p2.name + " winning states: " + p2Wins);
+
+        boolean isEndless = GraphAnalyzer.detectCycles(graph);
+        Logger.log("Can be endless? " + (isEndless ? "Yes" : "No"));
+
+        if (isEndless)
+            endlessBattles.add(p1.name + " VS " + p2.name + " can be endless!");
+
+        Pokemon winner;
+        Pokemon loser;
 
         if (p1Wins > p2Wins) {
-            Logger.log("Winner: " + p1.name);
-            teamAWins++;
-            addWin(names, p1.name);
+            winner = p1;
+            loser = p2;
         } else if (p2Wins > p1Wins) {
-            Logger.log("Winner: " + p2.name);
-            teamBWins++;
-            addWin(names, p2.name);
+            winner = p2;
+            loser = p1;
         } else {
             Logger.log("Result: Draw");
+            return;
         }
-    }
 
-    private static void addWin(
-            String[] names,
-            String pokemon) {
-        for (int i = 0; i < names.length; i++) {
-            if (names[i].equals(pokemon)) {
-                pokemonWins[i]++;
-                return;
-            }
+        if (p1Wins == 0 || p2Wins == 0)
+            unfairBattles.add(loser.name + " cannot defeated " + winner.name);
+
+        Logger.log("Winner: " + winner.name);
+        teamAWins++;
+        pokemonWins.put(winner, pokemonWins.getOrDefault(winner, 0) + 1);
+        if (winner.isWeakAgainst(loser)) {
+            Logger.log(winner.name + " was in disadvantage against " + loser.name + ", but still won!");
+            disadvantagedBattles.add(winner.name + " was in disadvantage against " + loser.name + ", but still won!");
         }
     }
 
