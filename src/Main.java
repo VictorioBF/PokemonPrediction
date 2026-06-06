@@ -102,10 +102,15 @@ public class Main {
         }
 
         // Batalhas com ciclo (intermináveis)
-        Logger.logEmptyLine();
-        Logger.log("Total endless battles: " + endlessBattles.size());
-        for (String eb: endlessBattles)
-            Logger.log(eb);
+        if (endlessBattles.size() == 36) { // 36 é o máximo de batalhas entre times de 6
+            Logger.logEmptyLine();
+            Logger.log("Every single battle is endless!");
+        } else {
+            Logger.logEmptyLine();
+            Logger.log("Total endless battles: " + endlessBattles.size());
+            for (String eb: endlessBattles)
+                Logger.log(eb);
+        }
 
         Logger.close();
     }
