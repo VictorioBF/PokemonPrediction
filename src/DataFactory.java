@@ -1574,8 +1574,8 @@ public class DataFactory {
                 List.of(Type.WATER, Type.ICE),
                 130, 85, 80, 85, 95, 60,
                 List.of(
-                        HydroPump,
-                        IceBeam));
+                        IceBeam,
+                        Recover));
     }
 
     public static Pokemon ditto() {
