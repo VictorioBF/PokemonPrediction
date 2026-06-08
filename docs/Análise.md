@@ -61,11 +61,11 @@ Assim, para fins de somatório de quantidade de vitórias para o time A ou B, so
 
 ### 1 - Qual dos dois times tem a maior chance de vitória?
 
-Após a execução da simulação, vemos que o Time B tem uma leve vantagem sobre o Time A. Enquanto que o Time A venceu 12 combates, o Time B venceu 15. A conclusão que podemos tirar disso é que os Pokémon do Time B têm superioridade em relação aos do Time A, seja por terem mais pontos de vida, ou por serem mais rápidos, ou por terem mais força de ataque.
+Após a execução da simulação, verificamos um empate: 13 vitórias para cada lado. Com isso, conclui-se que, pelo fato de ambos os times serem compostos por Pokémon similares, com os mesmos moviimentos, um empate é esperado. As diferenças de vida, força, velocidade, defesa, etc., não foram suficientes para que um time se sobressaísse sobre o outro, o que resultou em um empate geral.
 
 ### 2 - Qual Pokémon possui o melhor desempenho geral nos combates analisados?
 
-Dois Pokémon empataram como os melhores do combate: o Blastoise e o Venusaur. Ambos venceram 4 combates, o que é o maior número de vitórias entre os Pokémon analisados. Em segundo lugar, também empatados, seguem Charizard, Garchomp, Arcanine e Dragonite, com 3 vitórias cada.
+O Pokémon que levou vantagem sobre os damis foi o *Venusaur*, com 4 vitórias. Em segundo lugar, com 3 vitórias, estão empatados *Charizard*, *Garchomp*, *Lapras*, *Blastoise*, *Arcanine* e *Dragonite*. Os Pokémon com o pior desempenho foram *Gengar* e *Pikachu*, que não venceram nenhum combate.
 
 #### Vitórias dos Pokémon do Time A
 
@@ -76,28 +76,45 @@ Dois Pokémon empataram como os melhores do combate: o Blastoise e o Venusaur. A
 | Gengar | 0 |
 | Garchomp | 3 |
 | Pikachu | 0 |
-| Lapras | 2 |
+| Lapras | 3 |
 
 #### Vitórias dos Pokémon do Time B
 
 | Pokémon | Vitórias |
 |--------------- | --------------- |
-| Blastoise | 4 |
+| Blastoise | 3 |
 | Arcanine | 3 |
-| Sceptile | 2 |
+| Sceptile | 1 |
 | Alakazam | 1 |
 | Jolteon | 2 |
 | Dragonite | 3 |
 
 ### 3 - Existe alguma batalha que um Pokémon sempre vença, independente das ações tomadas?
 
-Sim. O combate entre *Charizard* e *Blastoise* ocasiona em uma vitória do *Blastoise* em todos os estados possíveis. Isso se deve ao fato de o *Blastoise* ser um Pokémon do tipo água, o que lhe dá vantagem sobre o *Charizard*, que é do tipo fogo.
+Sim. O combate entre *Charizard* e *Blastoise*, por exemplo, ocasiona em uma vitória do *Blastoise* em todos os estados possíveis. Isso se deve ao fato de o *Blastoise* ser um Pokémon do tipo água, o que lhe dá vantagem sobre o *Charizard*, que é do tipo fogo.
 
 ![Charizard vs Blastoise](./Charizard_vs_Blastoise.png){width=60%}
 
+Abaixo está a tabela com todos os combates em que um Pokémon sempre vence, independente das ações tomadas:
+
+| Combate | Vencedor |
+|--------------- | --------------- |
+| Blastoise vs. Charizard | Blastoise |
+| Charizard vs. Sceptile | Charizard |
+| Charizard vs. Dragonite | Charizard |
+| Venusaur vs. Blastoise | Venusaur |
+| Venusaur vs. Jolteon | Venusaur |
+| Garchomp vs. Jolteon | Garchomp |
+| Dragonite vs. Garchomp | Dragonite |
+| Arcanine vs. Pikachu | Arcanine |
+| Sceptile vs. Pikachu | Sceptile |
+| Jolteon vs. Pikachu | Jolteon |
+| Arcanine vs. Lapras | Arcanine |
+| Lapras vs. Alakazam | Lapras |
+
 ### 4 - Existem estados em que a batalha se torna interminável?
 
-Nenhuma batalha é *interminável*, a não ser que seja estabelecido um limite de turnos. Por outro lado, existe a possibilidade de repetir indefinidamente o mesmo estado, o que pode ser considerado uma batalha interminável. Isso se dá por conta da mecânica do *Recover*, habilidade que recupera 50% de vida de um Pokémon.
+Todas as batalhas são *intermináveis*, a não ser que seja estabelecido um limite de turnos. Isso é causado pela habilidade *Recover*, que recupera 50% da vida de um Pokémon.
 
 Como o *Recover* não possui limites ou condições, de modo a poder utilizá-lo a qualquer momento, é possível que ambos os Pokémon fiquem apenas usando o *Recover* e, assim, nunca acabem a batalha. Abaixo está um exemplo, onde o *Charizard* e o *Alakazam* ficam apenas usando o *Recover*.
 
@@ -105,7 +122,7 @@ Como o *Recover* não possui limites ou condições, de modo a poder utilizá-lo
 
 ### 5 - Existem casos em que um Pokémon em desvantagem de tipo ainda consegue vencer?
 
-Sim. Um exemplo é o da batalha entre o *Pikachu* e o *Blastoise*. O *Pikachu*, sendo um Pokémon do tipo elétrico, tem vantagem sobre o *Blastoise*, que é do tipo água. No entanto, as estatísticas do *Blastoise* são superiores às do *Pikachu*, o que faz com que ele vença a batalha, mesmo estando em desvantagem de tipo.
+Sim: a batalha entre o *Pikachu* e o *Blastoise*. O *Pikachu*, sendo um Pokémon do tipo elétrico, tem vantagem sobre o *Blastoise*, que é do tipo água. No entanto, as estatísticas do *Blastoise* são superiores às do *Pikachu*, o que faz com que ele vença a batalha, mesmo estando em desvantagem de tipo.
 
 Claro, há estados em que o *Pikachu* vence o *Blastoise*, mas a maioria dos estados leva à vitória do *Blastoise*.
 
