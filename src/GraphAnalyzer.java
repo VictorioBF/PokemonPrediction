@@ -18,14 +18,14 @@ public class GraphAnalyzer {
             }
         }
 
-        System.out.println("P1 wins: " + p1Wins);
-        System.out.println("P2 wins: " + p2Wins);
+        System.out.println("Vitorias do Pokemon 1: " + p1Wins);
+        System.out.println("Vitorias do Pokemon 2: " + p2Wins);
 
-//        detectCycles(graph);
+        detectCycles(graph);
     }
 
     // Detecta batalhas infinitas
-    public static boolean detectCycles(BattleGraph graph) {
+    public static void detectCycles(BattleGraph graph) {
 
         Set<String> visited =
                 new HashSet<>();
@@ -36,10 +36,14 @@ public class GraphAnalyzer {
         for (String node : graph.graph.keySet()) {
 
             if (dfs(node, graph, visited, stack)) {
-                return true;
+
+                System.out.println(
+                        "Batalha interminavel detectada!"
+                );
+
+                return;
             }
         }
-        return false;
     }
 
     private static boolean dfs(

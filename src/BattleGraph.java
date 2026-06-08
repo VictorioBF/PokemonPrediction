@@ -2,13 +2,19 @@ import java.util.*;
 
 public class BattleGraph {
 
-    // HASH TABLE
+    // Tabela hash usada para registrar todos os estados ja encontrados.
+    // A chave e a identidade do estado, permitindo verificar rapidamente
+    // se uma combinacao de HP e Pokemon ja foi processada.
     public Map<String, State> states = new HashMap<>();
 
-    // GRAFO
+    // Grafo direcionado da batalha.
+    // Cada estado aponta para uma lista de transicoes possiveis, onde cada
+    // aresta representa um par de golpes escolhido pelos dois Pokemon.
     public Map<String, List<BattleEdge>> graph = new HashMap<>();
 
-    // HEAP
+    // Heap de prioridade com os estados que ainda precisam ser expandidos.
+    // Estados com menor soma de HP sao analisados primeiro, aproximando a
+    // exploracao dos estados mais perto do fim da batalha.
     public PriorityQueue<State> heap = new PriorityQueue<>(Comparator.comparingInt(s -> s.hp1 + s.hp2));
 
     public void build(State initial) {

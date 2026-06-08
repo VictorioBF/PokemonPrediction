@@ -8,7 +8,7 @@ public class ImageDownloader {
         try (InputStream in = URI.create(url).toURL().openStream()) {
             Files.copy(in, Paths.get(filePath));
         } catch (Exception e) {
-            System.out.println("Failed to download image from " + url);
+            System.out.println("Falha ao baixar imagem de " + url);
             e.printStackTrace();
         }
     }

@@ -60,8 +60,8 @@ public class State {
             Pokemon defender,
             Move move,
             boolean attackerIsP1) {
-        if (move.name.equals("Recover")) {
-            Logger.log(attacker.name + " usou Recover");
+        if (move.category == Category.STATUS) {
+            Logger.log(attacker.name + " usou " + move.name);
 
             if (attackerIsP1) {
                 int before = next.hp1;

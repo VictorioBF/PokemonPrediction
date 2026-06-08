@@ -31,7 +31,7 @@ public class DotFile {
             try {
                 Files.createDirectories(Paths.get("images"));
             } catch (Exception e) {
-                System.out.println("Failed to create images directory");
+                System.out.println("Falha ao criar o diretorio de imagens");
                 e.printStackTrace();
             }
             ImageDownloader.DownloadImage(imageUrl, filePath);
