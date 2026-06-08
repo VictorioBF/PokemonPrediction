@@ -6,10 +6,15 @@ geometry: margin=2cm
 lang: pt
 pagesize: A4
 linestretch: 1.5
-fontsize: 12pt
+fontsize: 11pt
 header-includes:
     - \usepackage{titling}
     - \setlength{\droptitle}{-2cm}
+    - \usepackage{float} 
+    - |
+      \makeatletter
+      \def\fps@figure{H}
+      \makeatother
 ---
 
 ## Introdução
